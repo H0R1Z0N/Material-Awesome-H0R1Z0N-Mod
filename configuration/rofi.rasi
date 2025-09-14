@@ -11,12 +11,12 @@ configuration {
 }
 
 * {
-	background-color:            rgb(18, 30, 37);
-	text-color:                  #d3d7cf;
-	selbg:                       rgb(0, 86, 136);
-	actbg:                       rgb(22, 37, 46);
-	urgbg:                       #e53935;
-	winbg:			     #26c6da;
+	background-color:            #800000;
+	text-color:                  #00FF00;
+	selbg:                       #B00000;
+	actbg:                       #FF0000;
+	urgbg:                       #0000FF;
+	winbg:			             #0000FF;
 
 	selected-normal-foreground:  @winbg;
 	normal-foreground:           @text-color;
@@ -39,7 +39,7 @@ configuration {
 	hide-scrollbar:              "true";
 	margin:                      0px;
 	padding:                     0px;
-	font:            "Roboto medium 10";
+	font:            "Overlock Mod Regular 12";
 }
 
 window {
@@ -91,10 +91,10 @@ element {
 entry {
 	expand:         true;
 	text-color:     @normal-foreground;
-	background-color: rgb(25, 41, 51);
+	background-color: #800000;
 	vertical-align: 1;
 	padding:        12px;
-	font:            "Roboto medium 13";
+	font:            "Overlock Mod Regular 15";
 }
 
 element normal.normal {

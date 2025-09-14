@@ -5,46 +5,49 @@ local apps = require('configuration.apps')
 
 local tags = {
   {
-    icon = icons.chrome,
-    type = 'chrome',
-    defaultApp = apps.default.browser,
-    screen = 1
+    icon = icons.Num1,
+    type = 'any',
+    defaultApp = apps.default.rofi
   },
   {
-    icon = icons.code,
-    type = 'code',
-    defaultApp = apps.default.editor,
-    screen = 1
+    icon = icons.Num2,
+    type = 'any',
+    defaultApp = apps.default.rofi
   },
   {
-    icon = icons.social,
-    type = 'social',
-    defaultApp = apps.default.social,
-    screen = 1
-  },
-  {
-    icon = icons.game,
-    type = 'game',
-    defaultApp = apps.default.game,
-    screen = 1
-  },
-  {
-    icon = icons.folder,
-    type = 'files',
-    defaultApp = apps.default.files,
-    screen = 1
-  },
-  {
-    icon = icons.music,
-    type = 'music',
-    defaultApp = apps.default.music,
-    screen = 1
-  },
-  {
-    icon = icons.lab,
+    icon = icons.Num3,
     type = 'any',
     defaultApp = apps.default.rofi,
-    screen = 1
+  },
+  {
+    icon = icons.Num4,
+    type = 'any',
+    defaultApp = apps.default.rofi
+  },
+  {
+    icon = icons.Num5,
+    type = 'any',
+    defaultApp = apps.default.rofi
+  },
+  {
+    icon = icons.Num6,
+    type = 'any',
+    defaultApp = apps.default.rofi
+  },
+  {
+    icon = icons.Num7,
+    type = 'any',
+    defaultApp = apps.default.rofi
+  },
+  {
+    icon = icons.Num8,
+    type = 'any',
+    defaultApp = apps.default.rofi
+  },
+  {
+    icon = icons.Num9,
+    type = 'any',
+    defaultApp = apps.default.rofi
   }
 }
 
@@ -62,7 +65,7 @@ awful.screen.connect_for_each_screen(
         {
           icon = tag.icon,
           icon_only = true,
-          layout = awful.layout.suit.tile,
+          layout = awful.layout.suit.max,
           gap_single_client = false,
           gap = 4,
           screen = s,

@@ -10,6 +10,7 @@ local left_panel = function(screen)
 
   local panel =
     wibox {
+    screen = 1,
     width = action_bar_width,
     height = screen.geometry.height,
     x = screen.geometry.x,

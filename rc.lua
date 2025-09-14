@@ -3,6 +3,7 @@ local awful = require('awful')
 local wibox = require("wibox")
 require('awful.autofocus')
 local beautiful = require('beautiful')
+require('beautiful').xresources.set_dpi(96)
 
 -- Theme
 beautiful.init(require('theme'))
@@ -20,6 +21,10 @@ require('module.exit-screen')
 require('module.quake-terminal')
 
 -- Setup all configurations
+awful.spawn.with_shell("export DISPLAY=:0")
+awful.spawn("DISPLAY=:0 brave")
+awful.spawn("DISPLAY=:0 heroic")
+awful.spawn.with_shell("export XDG_CURRENT_DESKTOP=GNOME")
 require('configuration.client')
 require('configuration.tags')
 _G.root.keys(require('configuration.keys.global'))
@@ -82,3 +87,6 @@ _G.client.connect_signal(
     c.border_color = beautiful.border_normal
   end
 )
+
+awful.key({ "Shift" }, "Alt_L", function () mykeyboardlayout.next_layout(); end)
+awful.key({ "Mod1" }, "Shift_L", function () mykeyboardlayout.next_layout(); end)

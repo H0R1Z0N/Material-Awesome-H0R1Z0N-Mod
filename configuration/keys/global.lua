@@ -85,28 +85,28 @@ local globalKeys =
     {description = 'Lock the screen', group = 'awesome'}
   ),
   awful.key(
-    {modkey},
+    {'Control'},
     'Print',
-    function()
-      awful.util.spawn_with_shell(apps.default.delayed_screenshot)
-    end,
-    {description = 'Mark an area and screenshot it 10 seconds later (clipboard)', group = 'screenshots (clipboard)'}
-  ),
-  awful.key(
-    {modkey},
-    'p',
-    function()
-      awful.util.spawn_with_shell(apps.default.screenshot)
-    end,
-    {description = 'Take a screenshot of your active monitor and copy it to clipboard', group = 'screenshots (clipboard)'}
-  ),
-  awful.key(
-    {altkey, 'Shift'},
-    'p',
     function()
       awful.util.spawn_with_shell(apps.default.region_screenshot)
     end,
-    {description = 'Mark an area and screenshot it to your clipboard', group = 'screenshots (clipboard)'}
+    {description = 'Screenshot a selected area (clipboard)', group = 'screenshots (clipboard)'}
+  ),
+  awful.key(
+    {altkey},
+    'Print',
+    function()
+      awful.util.spawn_with_shell(apps.default.window_screenshot)
+    end,
+    {description = 'Take a screenshot of the active window (clipboard)', group = 'screenshots (clipboard)'}
+  ),
+  awful.key(
+    {},
+    'Print',
+    function()
+      awful.util.spawn_with_shell(apps.default.screenshot)
+    end,
+    {description = 'Screenshot whole desktop (clipboard)', group = 'screenshots (clipboard)'}
   ),
   awful.key(
     {modkey},
@@ -300,29 +300,78 @@ local globalKeys =
     end,
     {description = 'toggle mute', group = 'hotkeys'}
   ),
+ --[[ awful.key(
+    {},
+    'XF86AudioStop',
+    function()
+      awful.spawn("mpc toggle")
+    end,
+    {description = 'Skip to Previous Track', group = 'hotkeys'}
+  ),]]
   awful.key(
+    {},
+    'XF86AudioStop',
+    function()
+      awful.spawn("playerctl stop")
+    end,
+    {description = 'Stop the audio source', group = 'hotkeys'}
+  ),
+  awful.key(
+    {},
+    'XF86AudioPrev',
+    function()
+      awful.spawn("playerctl previous")
+    end,
+    {description = 'Skip to Previous Track', group = 'hotkeys'}
+  ),
+    awful.key(
     {},
     'XF86AudioNext',
     function()
-      --
+      awful.spawn("playerctl next")
     end,
-    {description = 'toggle mute', group = 'hotkeys'}
+    {description = 'Skip to Next Track', group = 'hotkeys'}
   ),
+    awful.key(
+    {},
+    'XF86AudioPlay',
+    function()
+      awful.spawn("playerctl play-pause")
+    end,
+    {description = 'Toggle Play/Pause of the Media', group = 'hotkeys'}
+  ),
+    awful.key(
+    {},
+    'XF86AudioPause',
+    function()
+      awful.spawn("playerctl pause")
+    end,
+    {description = 'Pause Media', group = 'hotkeys'}
+  ),
+  --[[  awful.key(
+    {},
+    'XF86AudioEject',
+    function()
+      awful.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2 /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Eject")
+    end,
+    {description = 'Eject Media', group = 'hotkeys'}
+  ),]]
   awful.key(
     {},
     'XF86PowerDown',
     function()
-      --
+      awful.spawn("systemctl hibernate")
     end,
-    {description = 'toggle mute', group = 'hotkeys'}
+    {description = 'Hibernate', group = 'hotkeys'}
   ),
   awful.key(
     {},
     'XF86PowerOff',
     function()
-      _G.exit_screen_show()
+      --_G.exit_screen_show()
+      awful.spawn("systemctl hibernate")
     end,
-    {description = 'toggle mute', group = 'hotkeys'}
+    {description = 'Hibernate', group = 'hotkeys'}
   ),
   -- Screen management
   awful.key(

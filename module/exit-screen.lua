@@ -57,6 +57,10 @@ function reboot_command()
   awful.spawn.with_shell('reboot')
   awful.keygrabber.stop(_G.exit_screen_grabber)
 end
+function hibernate_command()
+  awful.spawn.with_shell('systemctl hibernate')
+  awful.keygrabber.stop(_G.exit_screen_grabber)
+end
 
 local poweroff = buildButton(icons.power, 'Shutdown')
 poweroff:connect_signal(
@@ -71,6 +75,14 @@ reboot:connect_signal(
   'button::release',
   function()
     reboot_command()
+  end
+)
+
+local hibernate = buildButton(icons.hibernate, 'Hibernate')
+poweroff:connect_signal(
+  'button::release',
+  function()
+    hibernate_command()
   end
 )
 
@@ -144,6 +156,8 @@ function exit_screen_show()
         poweroff_command()
       elseif key == 'r' then
         reboot_command()
+      elseif key == 'h' then
+        hibernate_command()
       elseif key == 'Escape' or key == 'q' or key == 'x' then
         -- naughty.notify({text = "Cancel"})
         exit_screen_hide()
@@ -184,6 +198,7 @@ exit_screen:setup {
       -- {
       poweroff,
       reboot,
+      hibernate,
       suspend,
       exit,
       lock,
