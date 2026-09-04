@@ -36,6 +36,22 @@ local globalKeys =
     {description = 'focus previous by index', group = 'client'}
   ),
   awful.key(
+    {modkey, "Shift"},
+    'd',
+    function()
+      awful.client.swap.byidx(1)
+    end,
+    {description = 'swap with next window', group = 'client'}
+  ),
+  awful.key(
+    {modkey, "Shift"},
+    'a',
+    function()
+      awful.client.swap.byidx(-1)
+    end,
+    {description = 'swap with previous window', group = 'client'}
+  ),
+  awful.key(
     {modkey},
     'r',
     function()
