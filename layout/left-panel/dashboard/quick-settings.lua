@@ -5,7 +5,7 @@ return wibox.widget {
   wibox.widget {
     wibox.widget {
       text = 'Quick settings',
-      font = 'Overlock Mod Regular 15',
+      font = 'Overlock Regular 15',
       widget = wibox.widget.textbox
     },
     widget = mat_list_item

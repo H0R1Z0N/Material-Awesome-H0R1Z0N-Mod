@@ -1,27 +1,36 @@
 -------------------------------------------------
--- Battery Widget for Awesome Window Manager
--- Shows the battery status using the ACPI tool
--- More details could be found here:
--- https://github.com/streetturtle/awesome-wm-widgets/tree/master/battery-widget
-
--- @author Pavel Makhov
--- @copyright 2017 Pavel Makhov
+-- Package Updater Widget for Awesome Window Manager
+-- Checks for pending updates (official repo + AUR) via pakku, and
+-- opens paru in a terminal when clicked to actually apply them.
 -------------------------------------------------
 
 local awful = require('awful')
-local naughty = require('naughty')
-local watch = require('awful.widget.watch')
 local wibox = require('wibox')
 local clickable_container = require('widget.material.clickable-container')
 local gears = require('gears')
 local dpi = require('beautiful').xresources.apply_dpi
-
--- acpi sample outputs
--- Battery 0: Discharging, 75%, 01:51:38 remaining
--- Battery 0: Charging, 53%, 00:57:43 until charged
+local watch = require('awful.widget.watch')
 
 local HOME = os.getenv('HOME')
 local PATH_TO_ICONS = HOME .. '/.config/awesome/widget/package-updater/icons/'
+
+-- Off by default: a real `pacman -Sy` database sync needs root, and a
+-- background widget polling every 60s can't prompt for a password
+-- sanely. Flip this to true only if you've also added a narrow
+-- passwordless-sudo rule for exactly this command via `sudo visudo`,
+-- e.g. a line like:
+--   hnt ALL=(ALL) NOPASSWD: /usr/bin/pacman -Sy
+-- Left as a manual step on purpose -- not something to write into
+-- /etc/sudoers for you without you looking at it first.
+local AUTO_SYNC = false
+
+local CHECK_COMMAND = AUTO_SYNC and 'bash -c "sudo pacman -Sy && pakku -Qu"' or 'pakku -Qu'
+
+-- Terminal used to launch paru when the widget is clicked. xterm is used
+-- as a safe default since it's present on essentially any Linux system;
+-- swap it here for your preferred terminal (e.g. 'kitty -e paru').
+local UPDATE_COMMAND = 'xterm -e paru'
+
 local updateAvailable = false
 local numOfUpdatesAvailable
 
@@ -43,16 +52,12 @@ widget_button:buttons(
       1,
       nil,
       function()
-        if updateAvailable then
-          awful.spawn('pamac-manager --updates')
-        else
-          awful.spawn('pamac-manager')
-        end
+        awful.spawn(UPDATE_COMMAND)
       end
     )
   )
 )
--- Alternative to naughty.notify - tooltip. You can compare both and choose the preferred one
+
 awful.tooltip(
   {
     objects = {widget_button},
@@ -69,39 +74,25 @@ awful.tooltip(
   }
 )
 
--- To use colors from beautiful theme put
--- following lines in rc.lua before require("battery"):
---beautiful.tooltip_fg = beautiful.fg_normal
---beautiful.tooltip_bg = beautiful.bg_normal
-
-local function show_battery_warning()
-  naughty.notify {
-    icon = PATH_TO_ICONS .. 'battery-alert.svg',
-    icon_size = dpi(48),
-    text = 'Huston, we have a problem',
-    title = 'Battery is dying',
-    timeout = 5,
-    hover_timeout = 0.5,
-    position = 'bottom_left',
-    bg = '#d32f2f',
-    fg = '#EEE9EF',
-    width = 248
-  }
-end
-
-local last_battery_check = os.time()
 watch(
-  'pamac checkupdates',
+  CHECK_COMMAND,
   60,
   function(_, stdout)
-    numOfUpdatesAvailable = tonumber(stdout:match('.-\n'):match('%d*'))
+    local count = 0
+    for _ in stdout:gmatch('[^\r\n]+') do
+      count = count + 1
+    end
+
     local widgetIconName
-    if (numOfUpdatesAvailable ~= nil) then
+    if count > 0 then
       updateAvailable = true
+      numOfUpdatesAvailable = count
       widgetIconName = 'package-up'
+      widget_button.visible = true
     else
       updateAvailable = false
       widgetIconName = 'package'
+      widget_button.visible = false
     end
     widget.icon:set_image(PATH_TO_ICONS .. widgetIconName .. '.svg')
     collectgarbage('collect')

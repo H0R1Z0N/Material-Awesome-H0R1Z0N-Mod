@@ -16,7 +16,7 @@ return function(_, panel)
     },
     wibox.widget {
       text = 'Search Applications',
-      font = 'Overlock Mod Regular 15',
+      font = 'Overlock Regular 15',
       widget = wibox.widget.textbox
     },
     clickable = true,
@@ -44,7 +44,7 @@ return function(_, panel)
     },
     wibox.widget {
       text = 'End work session',
-      font = 'Overlock Mod Regular 15',
+      font = 'Overlock Regular 15',
       widget = wibox.widget.textbox
     },
     clickable = true,

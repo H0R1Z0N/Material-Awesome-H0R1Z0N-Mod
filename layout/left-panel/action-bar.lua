@@ -10,7 +10,7 @@ local clickable_container = require('widget.material.clickable-container')
 
 return function(screen, panel, action_bar_width)
   -- Clock / Calendar 24h format
-  local textclock = wibox.widget.textclock('<span font="Overlock Mod Regular 13">%H\n%M</span>')
+  local textclock = wibox.widget.textclock('<span font="Overlock Regular 13">%H\n%M\n%S</span>', 1)
 
   -- Clock / Calendar 12AM/PM fornat
   -- local textclock = wibox.widget.textclock('<span font="Roboto Mono bold 11">%I\n%M</span>\n<span font="Roboto Mono bold 9">%p</span>')
@@ -90,9 +90,10 @@ return function(screen, panel, action_bar_width)
       -- Right widgets
       layout = wibox.layout.fixed.vertical,
       wibox.container.margin(systray, dpi(10), dpi(10)),
-      --require('widget.package-updater'),
+      require('widget.package-updater'),
       --require('widget.wifi'),
       require('widget.battery'),
+      require('widget.battery-devices'),
       -- Clock
       --clock_widget
     }

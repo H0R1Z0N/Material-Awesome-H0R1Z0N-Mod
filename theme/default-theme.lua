@@ -5,7 +5,7 @@ local gears = require('gears')
 local dpi = require('beautiful').xresources.apply_dpi
 local theme = {}
 theme.icons = theme_dir .. '/icons/'
-theme.font = 'Overlock Mod Regular 12'
+theme.font = 'Overlock Regular 12'
 
 -- Colors Pallets
 
@@ -25,8 +25,8 @@ local awesome_overrides =
   theme.icons = theme.dir .. '/icons/'
   theme.wallpaper = theme.dir .. '/wallpapers/LinusFuckNvidiaEdit.png'
   --theme.wallpaper = '#e0e0e0'
-  theme.font = 'Overlock Mod Regular 12'
-  theme.title_font = 'Overlock Mod Regular 12'
+  theme.font = 'Overlock Regular 12'
+  theme.title_font = 'Overlock Regular 12'
 
   theme.fg_normal = '#ffffffde'
 
@@ -83,7 +83,7 @@ local awesome_overrides =
 
   -- Tasklist
 
-  theme.tasklist_font = 'Overlock Mod Regular 13'
+  theme.tasklist_font = 'Overlock Regular 13'
   theme.tasklist_bg_normal = theme.background.hue_800
   theme.tasklist_bg_focus =
     'linear:0,0:0,' ..

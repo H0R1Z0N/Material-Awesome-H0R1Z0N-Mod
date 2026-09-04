@@ -5,7 +5,7 @@ local dpi = require('beautiful').xresources.apply_dpi
 
 local theme = {}
 theme.icons = theme_dir .. '/icons/'
-theme.font = 'Overlock Mod Regular 12'
+theme.font = 'Overlock Regular 12'
 
 -- Colors Pallets
 

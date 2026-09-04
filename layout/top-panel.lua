@@ -12,10 +12,10 @@ local dpi = require('beautiful').xresources.apply_dpi
 local icons = require('theme.icons')
 
 -- Clock / Calendar 24h format
---local textclock = wibox.widget.textclock('<span font="Overlock Mod Regular 11">%d.%m.%Y\n     %H:%M</span>')
+--local textclock = wibox.widget.textclock('<span font="Overlock Regular 11">%d.%m.%Y\n     %H:%M:%S</span>', 1)
 
 -- Clock / Calendar 12AM/PM fornat
-  local textclock = wibox.widget.textclock('<span font="Overlock Mod Regular 9">%d.%m.%Y\n  %I:%M %p</span>\n<span font="Overlock Mod Regular 9">%p</span>')
+    local textclock = wibox.widget.textclock('<span font="Overlock Regular 9"> %d.%m.%Y\n%I:%M:%S %p</span>\n<span font="Overlock Regular 9">%p</span>', 1)
 -- textclock.forced_height = 56
 
 -- Add a calendar (credits to kylekewley for the original code)

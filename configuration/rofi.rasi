@@ -39,7 +39,7 @@ configuration {
 	hide-scrollbar:              "true";
 	margin:                      0px;
 	padding:                     0px;
-	font:            "Overlock Mod Regular 12";
+	font:            "Overlock Regular 12";
 }
 
 window {
@@ -94,7 +94,7 @@ entry {
 	background-color: #800000;
 	vertical-align: 1;
 	padding:        12px;
-	font:            "Overlock Mod Regular 15";
+	font:            "Overlock Regular 15";
 }
 
 element normal.normal {
