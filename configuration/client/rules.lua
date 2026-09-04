@@ -16,13 +16,13 @@ awful.rules.rules = {
       screen = awful.screen.preferred,
       placement = awful.placement.no_offscreen,
       floating = false,
-      maximized = false,
+      maximized = true,
       above = false,
       below = false,
       ontop = false,
       sticky = false,
-      maximized_horizontal = false,
-      maximized_vertical = false
+      maximized_horizontal = true,
+      maximized_vertical = true
     }
   },
   {
@@ -35,7 +35,7 @@ awful.rules.rules = {
     properties = {
       placement = awful.placement.centered,
       ontop = true,
-      floating = true,
+      floating = false,
       drawBackdrop = true,
       shape = function()
         return function(cr, w, h)

@@ -8,7 +8,8 @@
 
 # List of applications to run
 APPS=(
-    barrier
+    barrier,
+	megasync-instance
     )
 
 # Some applications start child applications that need to be killed on reload
@@ -31,4 +32,3 @@ for app in "${APPS[@]}"
 do
     env $app ${@:2} &
 done
-
