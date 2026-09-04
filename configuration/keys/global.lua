@@ -2,6 +2,7 @@ local awful = require('awful')
 require('awful.autofocus')
 local beautiful = require('beautiful')
 local hotkeys_popup = require('awful.hotkeys_popup').widget
+local screen_cycle = require("screen-cycle")
 
 local modkey = require('configuration.keys.mod').modKey
 local altkey = require('configuration.keys.mod').altKey
@@ -377,8 +378,15 @@ local globalKeys =
   awful.key(
     {modkey},
     'o',
-    awful.client.movetoscreen,
+    screen_cycle.move_next,
     {description = 'move window to next screen', group = 'client'}
+  ),
+
+  awful.key(
+    {modkey, "Shift"},
+    'o',
+    screen_cycle.move_prev,
+    {description = 'move window to previous screen', group = 'client'}
   ),
   -- Open default program for tag
   awful.key(

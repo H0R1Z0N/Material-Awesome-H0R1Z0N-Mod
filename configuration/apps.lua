@@ -10,7 +10,7 @@ return {
   default = {
     terminal = 'terminator',
     rofi = rofi_command,
-    lock = 'i3lock-fancy',
+    --lock = '',
     quake = 'terminator',
     screenshot = 'flameshot full -c',
     region_screenshot = 'flameshot gui -c',
@@ -21,8 +21,8 @@ return {
     --screenshot = 'gnome-screenshot -c',
     --region_screenshot = 'gnome-screenshot -c -a',
     --window_screenshot = 'gnome-screenshot -c -w',
-    browser = 'chrome',
-    editor = 'notepadqq', -- gui text editor
+    browser = 'brave',
+    editor = 'micro', -- gui text editor
     social = 'discord',
     game = rofi_command,
     files = 'nemo',
@@ -32,7 +32,7 @@ return {
   run_on_start_up = {
     'picom --config ' .. filesystem.get_configuration_dir() .. '/configuration/picom.conf',
     'nm-applet --indicator', -- wifi
-    'pnmixer', -- shows an audiocontrol applet in systray when installed.
+    'pasystray', -- shows an audiocontrol applet in systray when installed.
     'blueberry-tray', -- Bluetooth tray icon
     'numlockx on', -- enable numlock
     '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)', -- credential manager
@@ -41,7 +41,8 @@ return {
      'discord',
 --     'meteo-qt',
     -- 'synology-drive -minimized',
-     'steam-screensaver-fix-runtime -silent',
+     'steam',
+     'xscreensaver',
      '/usr/lib/kdeconnectd',
      'kdeconnect-indicator',
 --     'megasync-instance',
