@@ -20,6 +20,7 @@ local widget =
   wibox.widget {
   id = 'text',
   widget = wibox.widget.textbox,
+  font = 'Overlock Regular 10',
   text = '--'
 }
 
@@ -43,6 +44,7 @@ local function show_low_battery_warning(name, charge)
     icon_size = dpi(48),
     text = name .. ' is at ' .. charge .. '%',
     title = 'Device battery low',
+    font = 'Overlock Regular 11',
     timeout = 5,
     hover_timeout = 0.5,
     position = 'bottom_left',
